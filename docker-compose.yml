@@ -2,12 +2,14 @@ version: '3'
 
 services:
   nodejs:
-    #fill out the configuration here
+    image: node:10-alpine
+    container_name: nodejs
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
     networks:
       - app-network
-  
-  #the nginx configuration is given below
-  #the website will run on localhost:80 
+
   webserver:
     image: nginx:mainline-alpine
     container_name: webserver
@@ -27,10 +29,8 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      #fill out your absolute path to your folder here
-      device: /absolute/path/to/web/template/folder
-      o: bind
+      device: //wsl.localhost/Ubuntu/home/bfleming231/389T/cmsc389T-web-template
 
 networks:
   app-network:
-    driver: bridge 
+    driver: bridge
