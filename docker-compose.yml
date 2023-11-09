@@ -2,10 +2,11 @@ version: '3'
 
 services:
   nodejs:
-    image: node:10-alpine
-    container_name: nodejs
+    image: website_host
+    container_name: website_node
     restart: unless-stopped
     build:
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
