@@ -5,6 +5,8 @@ services:
     image: node:10-alpine
     container_name: nodejs
     restart: unless-stopped
+    build:
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     networks:
@@ -29,7 +31,8 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: //wsl.localhost/Ubuntu/home/bfleming231/389T/cmsc389T-web-template
+      device: /mnt/wsl.localhost/Ubuntu/home/bfleming231/389T/cmsc389T-web-template
+      o: bind
 
 networks:
   app-network:
